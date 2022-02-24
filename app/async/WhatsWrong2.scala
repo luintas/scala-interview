@@ -28,7 +28,7 @@ object EnterpriseDao {
 
 object WhatsWrong2 {
 
-  //Review this code. What could be done better ? How would you do it 
+  //Review this code. What could be done better ? How would you do it
   //Better error handling for ceo_id (getOrElse)
   def getCEOAndEnterprise(ceo_id: Option[String]): Future[(Option[CEO], Option[Enterprise])] = {
     for {

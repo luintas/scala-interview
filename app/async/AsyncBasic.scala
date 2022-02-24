@@ -17,16 +17,16 @@ import scala.util.Success
 object AsyncBasic {
 
   def compute(id: String) = {
-    val wbsrvc1 = Webservice1.call(id)
-    val wbsrvc2 = Webservice2.call(id)
-    val result : Future[(Option[Int],Either[String,Int])] = for{
+    val wbsrvc1                                            = Webservice1.call(id)
+    val wbsrvc2                                            = Webservice2.call(id)
+    val result: Future[(Option[Int], Either[String, Int])] = for {
       res1 <- wbsrvc1
       res2 <- wbsrvc2
-    }yield (res1,res2)
-    result.onComplete{
-      case Success(value) => {
+    } yield (res1, res2)
+    result.onComplete {
+      case Success(value)     => {
         //We assume that only the computation of the value is important error are ignored
-        val res =value._1.getOrElse(0) + value._2.getOrElse(0)
+        val res = value._1.getOrElse(0) + value._2.getOrElse(0)
         println("The computed sum is %d".format(res))
       }
       case Failure(exception) => exception.printStackTrace()

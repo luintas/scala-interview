@@ -26,20 +26,19 @@ object Refactoring {
     return categories
   }
   def easyRefactorGetCategories(files: List[File]): List[String] = {
-    var categories: Map[String,Char] = Map[String,Char]()
+    var categories: Map[String, Char] = Map[String, Char]()
     if(files != null) {
       for(file <- files) {
         if(file.category != null) {
-          categories += (file.category ->'0')
+          categories += (file.category -> '0')
         }
       }
     }
-
     return categories.keys.toList
   }
   def otherRefactorgetCategories(files: List[File]): List[String] = {
     val categories: List[String] = List()
-    return files.map(_.category).filter(_ == null).distinct
+    return files.filter(_.category == null).map(_.category).distinct
   }
 
 }

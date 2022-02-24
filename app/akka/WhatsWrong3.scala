@@ -11,6 +11,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
  * What would you do to fix it ?
  * Do not mind about the not implemented code
  */
+
+/* This doesn't respect the Actor model we shouldn't have an internal State put rather reason through modification of behaviours 
+  currently the state can be mutated during it's execution of queryAsyncServer which introduce undefined behaviour */
 class WhatsWrong3 extends Actor {
 
   var internalState = "internal state"

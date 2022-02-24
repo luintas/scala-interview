@@ -22,21 +22,21 @@ object BasicScala {
     "?" + recEncodeParamsInUrl(params).substring(1)
   }
   def recEncodeParamsInUrl(params: Map[String, String]): String = {
-    if (params.isEmpty){
+    if(params.isEmpty) {
       return ""
     }
-    var head = params.head
-    val retVal = "&"+head._1 + "=" + head._2 + recEncodeParamsInUrl(params.removed(head._1))
+    var head   = params.head
+    val retVal = "&" + head._1 + "=" + head._2 + recEncodeParamsInUrl(params.removed(head._1))
     retVal
   }
-
 
   /**
    * Test if a String is an email
    */
   def isEmail(maybeEmail: String): Boolean = {
     // TODO:pattern conditions are slightly more complex modify this before submitting it need to add that first dns domain can't be all numerical
-    val pattern = "[\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{1,64}@([\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}\\.){1,3}[\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}".r
+    val pattern =
+      "[\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{1,64}@([\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}\\.){1,3}[\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}".r
     pattern.matches(maybeEmail)
   }
 
@@ -52,16 +52,16 @@ object BasicScala {
    * output : 1723793299
    */
   def power(i: Int, n: Int): Int = {
-    if (n <= 0){
+    if(n <= 0) {
       return 1
     }
     println("n = %d".format(n))
-    i * power(i,n-1)
+    i * power(i, n - 1)
   }
 
 }
 
-object main extends App{
+object main extends App {
 
   val encodeTest = Map("sort_by" -> "name", "order_by" -> "asc", "user_id" -> "12")
   assert(BasicScala.encodeParamsInUrl(encodeTest) == "?sort_by=name&order_by=asc&user_id=12")
@@ -77,14 +77,16 @@ object main extends App{
   println("Passe3")
   assert(!BasicScala.isEmail("nell.flaharty@gmail"))
 
-  assert(BasicScala.power(2,3) == 8)
+  assert(BasicScala.power(2, 3) == 8)
   println("Power passed")
-  assert(ComputeAverage.average(List[Double](1,10,16)) == 9)
+  assert(ComputeAverage.average(List[Double](1, 10, 16)) == 9)
   println("Average passed")
   AsyncBasic.compute("1")
   AsyncBasic.compute("2")
   AsyncBasic.compute("5")
   AsyncBasic.compute("3")
   AsyncBasic.compute("9")
-  AsyncBasic.compute("10")// Undefined behaviour, will return MIN_DOUBLE but there's nothing to tell how we're supposed to handle that
+  AsyncBasic.compute(
+    "10"
+  ) // Undefined behaviour, will return MIN_DOUBLE but there's nothing to tell how we're supposed to handle that
 }

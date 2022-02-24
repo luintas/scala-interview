@@ -34,7 +34,7 @@ object BasicScala {
    * Test if a String is an email
    */
   def isEmail(maybeEmail: String): Boolean = {
-    // TODO:pattern conditions are slightly more complex modify this before submitting it need to add that first dns domain can't be all numerical
+    // Pattern conditions are slightly more complex it need to add that first dns domain can't be all numerical
     val pattern =
       "[\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{1,64}@([\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}\\.){1,3}[\\w0-9][\\!-\\'\\--9\\^-\\~A-Z\\?\\=\\*\\+]{0,61}[\\w0-9]{0,1}".r
     pattern.matches(maybeEmail)

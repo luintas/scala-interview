@@ -29,8 +29,8 @@ object BasicStream {
     //A Sink that will write its input onto the console
     val consoleSink: Sink[Int, Future[Done]] =
       Sink.foreach[Int]((input) => (println("I got %d".format(input))))
-      // .mapMaterializedValue(_.asInstanceOf[Future[Done]]) // This is an idea that doesn't work
-      //Instead i modified the import which is definitely not the right solution
+    // .mapMaterializedValue(_.asInstanceOf[Future[Done]]) // This is an idea that doesn't work
+    //Instead I modified the import which is definitely not the right solution
 
     //Connect the Source with the Sink and run it
     evenNumberSource.to(consoleSink).run()

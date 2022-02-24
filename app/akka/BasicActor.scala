@@ -16,7 +16,7 @@ class BasicActor extends Actor {
 
   def receive: Receive = {
     case Hello() => println("Hello there")
-    case Other() => println("What ?")
+    case _ => println("What ?")
   }
 }
 

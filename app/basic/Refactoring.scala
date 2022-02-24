@@ -12,7 +12,7 @@ object Refactoring {
     category: String
   )
 
-  def getCategories(files: List[File]): List[String] = {
+  def originalgetCategories(files: List[File]): List[String] = {
     val categories: List[String] = List()
 
     if(files != null) {
@@ -25,4 +25,21 @@ object Refactoring {
 
     return categories
   }
+  def easyRefactorGetCategories(files: List[File]): List[String] = {
+    var categories: Map[String,Char] = Map[String,Char]()
+    if(files != null) {
+      for(file <- files) {
+        if(file.category != null) {
+          categories += (file.category ->'0')
+        }
+      }
+    }
+
+    return categories.keys.toList
+  }
+  def otherRefactorgetCategories(files: List[File]): List[String] = {
+    val categories: List[String] = List()
+    return files.map(_.category).filter(_ == null).distinct
+  }
+
 }
